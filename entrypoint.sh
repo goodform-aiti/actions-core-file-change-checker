@@ -2,6 +2,9 @@
 set -e
 ERROR=0
 CHANGED_FILES=$(git diff --name-only --diff-filter=AM main...${CURRENT_COMMIT})
+
+echo ${CHANGED_FILES}
+
 CHANGED_FILES_PHP=$(find ${CHANGED_FILES} -type f -regex "^.*\(\.php\|\.phtml\)$")
 CHANGED_CORE_FILES=$(find ${CHANGED_FILES} -type f -regex "^\(app/code/core\|app/design/frontend/base\|app/design/adminhtml/base\|app/code/community\)/.+$")
 
