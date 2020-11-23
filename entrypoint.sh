@@ -6,7 +6,6 @@ CHANGED_FILES_PHP=$(find ${CHANGED_FILES} -type f -regex "^.*\(\.php\|\.phtml\)$
 CHANGED_CORE_FILES=$(find ${CHANGED_FILES} -type f -regex "^\(app/code/core\|app/design/frontend/base\|app/design/adminhtml/base\)/.+$")
 
 for file in ${CHANGED_CORE_FILES}; do		
-    echo "5555"
     RESULTS="Unchangable file is changed: ${file}"
     echo "\n${RESULTS}\n"	
     ERROR=1	
