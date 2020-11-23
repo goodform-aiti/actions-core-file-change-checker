@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-echo "11111"
+echo "11111xxxx"
 CHANGED_FILES=$(git diff --name-only --diff-filter=AM ${PREVIOUS_COMMIT} ${CURRENT_COMMIT})
 
 echo "22222"
