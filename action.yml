@@ -1,0 +1,15 @@
+name: 'Ateli core file change checker'
+description: 'core/community file change recognizer'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+inputs:
+  dir:
+    description: 'Folder to check syntax'
+    required: false
+    default: '.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.dir }}
