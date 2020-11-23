@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-
+ERROR=0
 echo "11111xxxx"
 CHANGED_FILES=$(git diff --name-only --diff-filter=AM ${PREVIOUS_COMMIT} ${CURRENT_COMMIT})
 
