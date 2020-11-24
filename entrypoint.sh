@@ -7,7 +7,7 @@ echo ${MODIFIED_FILES}
 echo "**************** changed files php"
 echo ${CHANGED_FILES_PHP}
 
-CHANGED_CORE_FILES=$(find ${MODIFIED_FILES} -type f -regex "^\(app/code/core\|app/design/frontend/base\|app/design/adminhtml/base\|app/code/community\)/.+$" 2>/dev/null)
+CHANGED_CORE_FILES=$(find ${MODIFIED_FILES} -type f -regex "^\(app/code/core\|app/design/frontend/base\|app/design/adminhtml/base\|app/code/community\)/.+$")
 
 for file in ${CHANGED_CORE_FILES}; do		
     RESULTS="Unchangable file is changed: ${file}"
