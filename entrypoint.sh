@@ -10,16 +10,13 @@ PATHS=(${MODIFIED_FILES//,/ })
 for i in "${!PATHS[@]}"
 do
 
-    for i in "${!PATHS[@]}"
-    do
-        if [[ ${PATHS[i]} =~ ^app\/code\/core\/(.+)$ ]] ; then
-          LOCAL_FILE=$(echo ${PATHS[i]} | sed  --expression='s/^app\/code\/core/app\/code\/local/g')
-          if [[ ! " ${PATHS[@]} " =~ " ${LOCAL_FILE} " ]]; then
-              echo "Not found changes in local file '$LOCAL_FILE' when core file changed." >&2
-              ERROR=1
-          fi
-        fi
-    done
+    if [[ ${PATHS[i]} =~ ^app\/code\/core\/(.+)$ ]] ; then
+      LOCAL_FILE=$(echo ${PATHS[i]} | sed  --expression='s/^app\/code\/core/app\/code\/local/g')
+      if [[ ! " ${PATHS[@]} " =~ " ${LOCAL_FILE} " ]]; then
+          echo "Not found changes in local file '$LOCAL_FILE' when core file changed." >&2
+          ERROR=1
+      fi
+    fi
         
     if [[ ${PATHS[i]} =~ ^app\/code\/community\/(.+)$ ]] ; then
         echo "Community file is changed: ${PATHS[i]}"
