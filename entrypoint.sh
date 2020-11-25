@@ -3,21 +3,29 @@ set -e
 ERROR=0
 echo " ************** MODIFIED FILES"
 echo ${MODIFIED_FILES}
-
-echo "**************** changed files php"
-echo ${CHANGED_FILES_PHP}
+echo " *****************************"
 
 
-#CHANGED_CORE_FILES=$(find ${MODIFIED_FILES} -type f -regex "^\(app/code/core\|app/design/frontend/base\|app/design/adminhtml/base\|app/code/community\)/.+$" 2>/dev/null)
+paths=(${MODIFIED_FILES//,/ })
+echo $paths
+for i in "${!paths[@]}"
+do
+    if [[ ${paths[i]} =~ ^app\/code\/core\/(.+)$ ]] ; then
+      echo "Core file is changed: ${paths[i]}"
+      ERROR=1
+    fi
+    if [[ ${paths[i]} =~ ^app\/design\/frontend\/base\/(.+)$ ]] ; then
+        echo "Core Design file is changed: ${paths[i]}"
+        ERROR=1
+    fi
+    if [[ ${paths[i]} =~ ^app\/design\/adminhtml\/base\/(.+)$ ]] ; then
+        echo "Core Admin Design file is changed: ${paths[i]}"
+        ERROR=1
+    fi
+    if [[ ${paths[i]} =~ ^app\/code\/community\/(.+)$ ]] ; then
+        echo "Community file is changed: ${paths[i]}"
+        ERROR=1
+    fi
+done
 
-echo "*************CHANGED_CORE_FILES"
-find ${MODIFIED_FILES} -type f -regex "^\(app/code/core\|app/design/frontend/base\|app/design/adminhtml/base\|app/code/community\)/.+$" 2>/dev/null
-
-
-
-for file in ${CHANGED_CORE_FILES}; do		
-    RESULTS="Unchangable file is changed: ${file}"
-    echo "\n${RESULTS}\n"	
-    ERROR=1	
-done	
 exit "${ERROR}"
