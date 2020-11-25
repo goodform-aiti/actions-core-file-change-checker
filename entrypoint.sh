@@ -7,7 +7,6 @@ echo " *****************************"
 
 
 paths=(${MODIFIED_FILES//,/ })
-echo $paths
 for i in "${!paths[@]}"
 do
     if [[ ${paths[i]} =~ ^app\/code\/core\/(.+)$ ]] ; then
