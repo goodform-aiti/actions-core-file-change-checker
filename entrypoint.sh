@@ -3,7 +3,7 @@ set -e
 ERROR=0
 echo " ************** MODIFIED FILES"
 printf ${MODIFIED_FILES}
-printf "\n*****************************"
+printf "\n*****************************\n"
 
 
 PATHS=(${MODIFIED_FILES//\\n / })
