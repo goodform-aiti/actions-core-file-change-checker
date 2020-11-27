@@ -2,11 +2,11 @@
 set -e
 ERROR=0
 echo " ************** MODIFIED FILES"
-echo ${MODIFIED_FILES}
-echo " *****************************"
+printf ${MODIFIED_FILES}
+printf "\n*****************************"
 
 
-PATHS=(${MODIFIED_FILES//\n / })
+PATHS=(${MODIFIED_FILES//\\n / })
 for i in "${!PATHS[@]}"
 do
 
