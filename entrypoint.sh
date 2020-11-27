@@ -10,6 +10,7 @@ PATHS=(${MODIFIED_FILES//\\n / })
 for i in "${!PATHS[@]}"
 do
     
+    echo ${PATHS[i]}
     
 
     if [[ ${PATHS[i]} =~ ^app\/code\/core\/(.+)$ ]] ; then
