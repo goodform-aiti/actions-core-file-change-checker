@@ -20,7 +20,7 @@ do
       fi
     fi
     
-    
+    echo "hoooy"
     if [[ ${PATHS[i]} =~ ^app\/code\/local\/Mage\/(.+)$ ]] ; then
         echo "Unchangeable file is changed: ${PATHS[i]}"
         ERROR=1
