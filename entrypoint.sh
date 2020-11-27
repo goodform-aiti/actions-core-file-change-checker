@@ -6,7 +6,7 @@ echo ${MODIFIED_FILES}
 echo " *****************************"
 
 
-PATHS=(${MODIFIED_FILES//,/ })
+PATHS=(${MODIFIED_FILES//\n/ })
 for i in "${!PATHS[@]}"
 do
 
