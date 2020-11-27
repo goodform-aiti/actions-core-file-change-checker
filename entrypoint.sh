@@ -6,7 +6,7 @@ printf ${MODIFIED_FILES}
 printf "\n*****************************\n"
 
 
-PATHS=(${MODIFIED_FILES//\\\n / })
+PATHS=(${MODIFIED_FILES//\\n / })
 for i in "${!PATHS[@]}"
 do
     
