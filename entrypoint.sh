@@ -21,7 +21,7 @@ do
     fi
     
     
-    if [[ ${PATHS[i]} =~ ^app\/code\/local\/\(Mage\|Varien\)\/(.+)$ ]] ; then
+    if [[ ${PATHS[i]} =~ ^app\/code\/local\/Mage\/(.+)$ ]] ; then
         echo "Unchangeable file is changed: ${PATHS[i]}"
         ERROR=1
     fi
