@@ -2,30 +2,6 @@
 set -e
 ERROR=0
 
-
-
-
-MODIFIED_FILES="amir.xml\n.github/labeler.yml\n.github/workflows/main.yml\napp/Mage.php\napp/code/local/Mage/Catalog/Model/Layer.xml\nindex.php"
-
-
-PATHS=$(printf ${MODIFIED_FILES} | tr \\n '\n')
-XML_FILES=$(grep -P '.+\.xml' <<< $PATHS)
-
-
-
-
-echo "$XML_FILES" | while read FILE ; do
-    echo "$FILE **"
-done
-
-
-
-
-
-
-
-
-
 echo " ************** MODIFIED FILES"
 printf ${MODIFIED_FILES}
 printf "\n*****************************\n"
