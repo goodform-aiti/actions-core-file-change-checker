@@ -32,12 +32,13 @@ done < <(grep -P '^app/code/core/.' <<< "$PATHS" | sed --expression='s/^app\/cod
 
 # prevent overrides in cummunity directory
 community_overrides=$(grep -P '^app/code/community/.' <<< "$PATHS" | sed --expression='s/^app\/code\/community/app\/code\/core/g')
-if [ ! -z "$community_overrides" ]; then
-    echo "Found overrides in 'app/code/community/'! If you need override core file, you must use local scope, not community. List of found files:" >&2
-    echo "$community_overrides" >&2
-    ERROR=103
-fi
-
+echo "$community_overrides" | while read CORE_FILE ; do
+    if [[ -f $CORE_FILE ]]
+    then
+        echo "Found overrides in 'app/code/community/'! If you need override core file, you must use local scope, not community. The file is: $CORE_FILE"
+        ERROR=103
+    fi
+done
 
 
 exit "${ERROR}"
