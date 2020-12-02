@@ -13,7 +13,7 @@ do
     #all local files must be found in changed files
     if ! grep "^$local_file\$" <<< "$PATHS" >/dev/null; then
         echo "Not found changes in local file '$local_file' when core file changed." >&2
-        exit_code=102
+        ERROR=102
     fi
     
     
