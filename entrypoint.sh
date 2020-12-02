@@ -6,10 +6,9 @@ printf ${MODIFIED_FILES}
 printf "\n*****************************\n"
 
 
-
 PATHS=$(printf ${MODIFIED_FILES} | tr \\n '\n')
 echo "$PATHS" | while read PATH
-do
+do 
     if [[ ${PATH} =~ ^app\/code\/core\/(.+)$ ]] ; then
       LOCAL_FILE=$(echo ${PATH} | sed  --expression='s/^app\/code\/core/app\/code\/local/g')
       if [[ ! " ${PATHS[@]} " =~ " ${LOCAL_FILE} " ]]; then
@@ -17,6 +16,12 @@ do
           ERROR=1
       fi
     fi
+    
+    if [[ ${PATH} =~ ^app\/code\/local\/Mage\/(.+)$ ]] ; then
+        echo "Unchangeable file is changed: ${PATH}"
+        ERROR=1
+    fi
+    
         
     if [[ ${PATH} =~ ^app\/code\/community\/(.+)$ ]] ; then
         echo "Community file is changed: ${PATH}"
