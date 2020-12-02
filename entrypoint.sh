@@ -7,26 +7,29 @@ printf "\n*****************************\n"
 
 
 PATHS=$(printf ${MODIFIED_FILES} | tr \\n '\n')
-echo "$PATHS" | while read PATH
-do 
-    if [[ ${PATH} =~ ^app\/code\/core\/(.+)$ ]] ; then
-      LOCAL_FILE=$(echo ${PATH} | sed  --expression='s/^app\/code\/core/app\/code\/local/g')
-      if [[ ! " ${PATHS[@]} " =~ " ${LOCAL_FILE} " ]]; then
-          echo "Not found changes in local file '$LOCAL_FILE' when core file changed." >&2
-          ERROR=1
-      fi
+while read -r local_file && [ ! -z "$local_file" ];
+do
+    #all local files must be found in changed files
+    if ! grep "^$local_file\$" <<< "$PATHS" >/dev/null; then
+        echo "Not found changes in local file '$local_file' when core file changed." >&2
+        exit_code=102
     fi
     
-    if [[ ${PATH} =~ ^app\/code\/local\/Mage\/(.+)$ ]] ; then
+    
+    if [[ $local_file =~ ^app\/code\/local\/Mage\/(.+)$ ]] ; then
         echo "Unchangeable file is changed: ${PATH}"
         ERROR=1
     fi
     
-        
+    
     if [[ ${PATH} =~ ^app\/code\/community\/(.+)$ ]] ; then
         echo "Community file is changed: ${PATH}"
         ERROR=1
     fi
-done
+
+done < <(grep -P '^app/code/core/.' <<< "$PATHS" | sed --expression='s/^app\/code\/core/app\/code\/local/g')
+
+
+
 
 exit "${ERROR}"
