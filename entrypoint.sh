@@ -17,13 +17,7 @@ do
     
     
     if [[ $local_file =~ ^app\/code\/local\/Mage\/(.+)$ ]] ; then
-        echo "Unchangeable file is changed: ${PATH}"
-        ERROR=1
-    fi
-    
-    
-    if [[ ${PATH} =~ ^app\/code\/community\/(.+)$ ]] ; then
-        echo "Community file is changed: ${PATH}"
+        echo "Unchangeable file is changed: ${local_file}"
         ERROR=1
     fi
 
