@@ -7,7 +7,7 @@ printf "\n*****************************\n"
 
 
 #PATHS=(${MODIFIED_FILES//\\n / })
-PATHS=$(printf ${MODIFIED_FILES} | tr \n '\n')
+PATHS=$(printf ${MODIFIED_FILES} | tr \\n '\n')
 #for i in "${!PATHS[@]}"
 echo "$PATHS" | while read PATH
 do
