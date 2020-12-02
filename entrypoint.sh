@@ -8,11 +8,7 @@ printf "\n*****************************\n"
 
 PATHS=$(printf ${MODIFIED_FILES} | tr \\n '\n')
 echo "$PATHS" | while read PATH
-do
-    
-    echo ${PATH}
-    
-
+do 
     if [[ ${PATH} =~ ^app\/code\/core\/(.+)$ ]] ; then
       LOCAL_FILE=$(echo ${PATH} | sed  --expression='s/^app\/code\/core/app\/code\/local/g')
       if [[ ! " ${PATHS[@]} " =~ " ${LOCAL_FILE} " ]]; then
@@ -21,7 +17,6 @@ do
       fi
     fi
     
-    echo "hoooy"
     if [[ ${PATH} =~ ^app\/code\/local\/Mage\/(.+)$ ]] ; then
         echo "Unchangeable file is changed: ${PATH}"
         ERROR=1
