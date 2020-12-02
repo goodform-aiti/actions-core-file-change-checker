@@ -15,11 +15,6 @@ do
         ERROR=102
     fi
     
-    
-    if [[ $local_file =~ ^app\/code\/local\/Mage\/(.+)$ ]] ; then
-        echo "Unchangeable file is changed: ${local_file}"
-        ERROR=1
-    fi
 
 done < <(grep -P '^app/code/core/.' <<< "$PATHS" | sed --expression='s/^app\/code\/core/app\/code\/local/g')
 
