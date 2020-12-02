@@ -6,15 +6,17 @@ printf ${MODIFIED_FILES}
 printf "\n*****************************\n"
 
 
-PATHS=(${MODIFIED_FILES//\\n / })
-for i in "${!PATHS[@]}"
+#PATHS=(${MODIFIED_FILES//\\n / })
+PATHS=$(printf ${MODIFIED_FILES} | tr \n '\n')
+#for i in "${!PATHS[@]}"
+echo "$PATHS" | while read PATH
 do
     
-    echo ${PATHS[i]}
+    echo ${PATH}
     
 
-    if [[ ${PATHS[i]} =~ ^app\/code\/core\/(.+)$ ]] ; then
-      LOCAL_FILE=$(echo ${PATHS[i]} | sed  --expression='s/^app\/code\/core/app\/code\/local/g')
+    if [[ ${PATH} =~ ^app\/code\/core\/(.+)$ ]] ; then
+      LOCAL_FILE=$(echo ${PATH} | sed  --expression='s/^app\/code\/core/app\/code\/local/g')
       if [[ ! " ${PATHS[@]} " =~ " ${LOCAL_FILE} " ]]; then
           echo "Not found changes in local file '$LOCAL_FILE' when core file changed." >&2
           ERROR=1
@@ -22,14 +24,14 @@ do
     fi
     
     echo "hoooy"
-    if [[ ${PATHS[i]} =~ ^app\/code\/local\/Mage\/(.+)$ ]] ; then
-        echo "Unchangeable file is changed: ${PATHS[i]}"
+    if [[ ${PATH} =~ ^app\/code\/local\/Mage\/(.+)$ ]] ; then
+        echo "Unchangeable file is changed: ${PATH}"
         ERROR=1
     fi
     
         
-    if [[ ${PATHS[i]} =~ ^app\/code\/community\/(.+)$ ]] ; then
-        echo "Community file is changed: ${PATHS[i]}"
+    if [[ ${PATH} =~ ^app\/code\/community\/(.+)$ ]] ; then
+        echo "Community file is changed: ${PATH}"
         ERROR=1
     fi
 done
