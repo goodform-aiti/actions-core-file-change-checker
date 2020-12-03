@@ -10,6 +10,7 @@ printf "\n*****************************\n"
 PATHS=$(printf ${MODIFIED_FILES} | tr \\n '\n')
 while read -r local_file && [ ! -z "$local_file" ];
 do
+
     echo "$local_file **"
     #all local files must be found in changed files
     if ! grep "^$local_file\$" <<< "$PATHS" >/dev/null; then
@@ -26,9 +27,13 @@ echo "$PATHS" | while read PATH ; do
          # skip deleted files
          continue
     fi
+    if [[ ${PATH} =~ ^(lib\/phpseclib|lib\/Zend|lib/PEAR)\/.+$ ]] ; then
+        echo "Holy code changed: ${PATH}"
+        ERROR=101
+    fi
     if [[ ${PATH} =~ ^app\/design\/frontend\/base\/(.+)$ ]] ; then
         echo "Holy code changed: ${PATH}"
-        ERROR=1
+        ERROR=101
     fi
 done
 
