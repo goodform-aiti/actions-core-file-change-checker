@@ -21,6 +21,11 @@ do
 done < <(grep -P '^app/code/core/.' <<< "$PATHS" | sed --expression='s/^app\/code\/core/app\/code\/local/g')
 
 echo "$PATHS" | while read PATH ; do
+    if [[ ! -f $PATH ]]
+    then
+         # skip deleted files
+         continue
+    fi
     if [[ ${PATH} =~ ^app\/design\/frontend\/base\/(.+)$ ]] ; then
         echo "Holy code changed: ${PATH}"
         ERROR=1
