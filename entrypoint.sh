@@ -20,11 +20,13 @@ do
 
 done < <(grep -P '^app/code/core/.' <<< "$PATHS" | sed --expression='s/^app\/code\/core/app\/code\/local/g')
 
+echo "$PATHS" | while read PATH ; do
+    if [[ ${PATH} =~ ^app\/design\/frontend\/base\/(.+)$ ]] ; then
+        echo "Holy code changed: ${PATH}"
+        ERROR=1
+    fi
+done
 
-if [[ ${PATH} =~ ^app\/design\/frontend\/base\/(.+)$ ]] ; then
-    echo "Holy code changed: ${PATH}"
-    ERROR=1
-fi
 
 # prevent overrides in cummunity directory
 community_overrides=$(grep -P '^app/code/community/.' <<< "$PATHS" | sed --expression='s/^app\/code\/community/app\/code\/core/g')
