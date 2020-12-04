@@ -55,6 +55,10 @@ echo "$PATHS" | while read PATH ; do
         echo "Holy code changed: ${PATH}"
         ERROR=101
     fi
+    if [[ ${PATH} =~ ^app\/code\/local\/Varien\/(.+)$ ]] ; then
+        echo "Holy code changed: ${PATH}"
+        ERROR=101
+    fi
 done
 
 
