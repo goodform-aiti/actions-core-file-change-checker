@@ -20,6 +20,27 @@ do
 
 done < <(grep -P '^app/code/core/.' <<< "$PATHS" | sed --expression='s/^app\/code\/core/app\/code\/local/g')
 
+
+
+while read -r core_file && [ ! -z "$core_file" ];
+do
+
+    #all core files must be found in changed files
+    if ! grep "^$core_file\$" <<< "$PATHS" >/dev/null; then
+        echo "Not found changes in core file '$core_file' when local file changed." >&2
+        ERROR=102
+    fi
+    
+
+done < <(grep -P '^app/code/local/Mage/.' <<< "$PATHS" | sed --expression='s/^app\/code\/local/app\/code\/core/g')
+
+
+
+
+
+
+
+
 echo "$PATHS" | while read PATH ; do
     if [[ ! -f $PATH ]]
     then
