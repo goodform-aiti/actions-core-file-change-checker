@@ -27,7 +27,7 @@ do
     local_file= $core_file | sed --expression='s/^app\/code\/core/app\/code\/local/g'
     if [[ ! -f $PATH ]]
     then
-         # skip deleted files
+         # skip deleted local files
          continue
     fi
     
