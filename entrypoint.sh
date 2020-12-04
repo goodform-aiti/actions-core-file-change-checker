@@ -24,6 +24,14 @@ done < <(grep -P '^app/code/core/.' <<< "$PATHS" | sed --expression='s/^app\/cod
 while read -r core_file && [ ! -z "$core_file" ];
 do
 
+    local_file= $core_file | sed --expression='s/^app\/code\/core/app\/code\/local/g'
+    if [[ ! -f $PATH ]]
+    then
+         # skip deleted files
+         continue
+    fi
+    
+
     #all core files must be found in changed files
     if ! grep "^$core_file\$" <<< "$PATHS" >/dev/null; then
         echo "Not found changes in core file '$core_file' when local file changed." >&2
