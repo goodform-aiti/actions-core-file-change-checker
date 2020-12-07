@@ -11,7 +11,7 @@ while read -r local_file && [ ! -z "$local_file" ];
 do
     if [[ ! -f $local_file ]]
     then
-         # skip the local file when it not exist
+         # skip the local file when it doesn't exist
          continue
     fi
     #all local files must be found in changed files
