@@ -59,10 +59,6 @@ echo "$PATHS" | while read PATH ; do
         echo "Holy code changed: ${PATH}"
         exit 101
     fi
-    if [[ ${PATH} =~ ^app\/design\/frontend\/base\/(.+)$ ]] ; then
-        echo "Holy code changed: ${PATH}"
-        exit 101
-    fi
     if [[ ! -f $PATH ]]
     then
          # skip deleted files
