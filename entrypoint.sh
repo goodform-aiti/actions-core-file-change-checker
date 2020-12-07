@@ -9,7 +9,11 @@ printf "\n*****************************\n"
 PATHS=$(printf ${MODIFIED_FILES} | tr \\n '\n')
 while read -r local_file && [ ! -z "$local_file" ];
 do
-
+    if [[ ! -f $local_file ]]
+    then
+         # skip the local file when it not exist
+         continue
+    fi
     #all local files must be found in changed files
     if ! grep "^$local_file\$" <<< "$PATHS" >/dev/null; then
         echo "Not found changes in local file '$local_file' when core file changed." >&2
