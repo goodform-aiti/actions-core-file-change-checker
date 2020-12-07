@@ -4,6 +4,12 @@ set -e
 echo " ************** MODIFIED FILES"
 printf ${MODIFIED_FILES}
 printf "\n*****************************\n"
+printf "\n*****************************\n"
+
+echo $(git log -1 --pretty=format:"%an---%ae")
+printf "\n*****************************\n"
+printf "\n*****************************\n"
+
 
 
 PATHS=$(printf ${MODIFIED_FILES} | tr \\n '\n')
