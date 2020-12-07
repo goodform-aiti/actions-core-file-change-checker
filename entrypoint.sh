@@ -29,7 +29,7 @@ while read -r core_file && [ ! -z "$core_file" ];
 do
 
     local_file= $core_file | sed --expression='s/^app\/code\/core/app\/code\/local/g'
-    if [[ ! -f $PATH ]]
+    if [[ ! -f $local_file ]]
     then
          # skip deleted local files
          continue
