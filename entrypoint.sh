@@ -55,10 +55,10 @@ done < <(grep -P '^app/code/local/Mage/.' <<< "$PATHS" | sed --expression='s/^ap
 
 echo "$PATHS" | while read PATH ; do
     
-    if [[ ${PATH} =~ ^(lib\/phpseclib|lib\/Zend|lib/PEAR)\/.+$ ]] ; then
-        echo "Holy code changed: ${PATH}"
-        exit 101
-    fi
+    #if [[ ${PATH} =~ ^(lib\/phpseclib|lib\/Zend|lib/PEAR)\/.+$ ]] ; then
+    #    echo "Holy code changed: ${PATH}"
+    #    exit 101
+    #fi
     if [[ ! -f $PATH ]]
     then
          # skip deleted files
