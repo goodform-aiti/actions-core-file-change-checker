@@ -71,7 +71,7 @@ echo "$PATHS" | while read PATH ; do
 done
 
 
-# prevent overrides in cummunity directory
+# prevent overrides in community directory
 community_overrides=$(grep -P '^app/code/community/.' <<< "$PATHS" | sed --expression='s/^app\/code\/community/app\/code\/core/g')
 echo "$community_overrides" | while read CORE_FILE ; do
     if [[ -f $CORE_FILE ]]
